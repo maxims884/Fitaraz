@@ -36,7 +36,15 @@ public class PropastTraking : MonoBehaviour
         {
             Vector3 nextPositionCamera = Vector3.Lerp(camera.transform.position, targetCameraPosition, Time.deltaTime * cameraSpeed);
             camera.transform.position = nextPositionCamera;
-            if (camera.transform.position.y > 9.9 && camera.transform.position.y < 10) isNeedMoveCamera = false;
+            if (camera.transform.position.y > 9.9 && camera.transform.position.y < 10)
+            {
+                isNeedMoveCamera = false;
+                GameObject endGame = GameObject.FindWithTag("EndGame");
+                if (endGame != null)
+                {
+                    endGame.GetComponent<Canvas>().enabled = true;
+                }
+            }
         }
     }
 

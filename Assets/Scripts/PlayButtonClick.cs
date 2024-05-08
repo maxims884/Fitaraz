@@ -37,4 +37,8 @@ public class PlayButtonClick : MonoBehaviour
         isNeedMoveCamera = true; // Движение камеры
         tileGenerator.GetComponent<TileGenerator>().SetStartGenerate();
     }
+    public void onRetryClicked()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

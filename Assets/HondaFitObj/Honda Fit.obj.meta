@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: FitMat
-    second: {fileID: 2100000, guid: 00a8b16e40ad7dd40ba15cb5b9189d7b, type: 2}
+    second: {fileID: 2100000, guid: 0baeca2078d7d034cacd95b3700161cd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 2
