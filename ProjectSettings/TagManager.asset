@@ -6,6 +6,7 @@ TagManager:
   tags:
   - lava
   - EndGame
+  - Pause Game
   layers:
   - Default
   - TransparentFX

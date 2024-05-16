@@ -36,9 +36,45 @@ public class PlayButtonClick : MonoBehaviour
         playerText.text = "0"; // Установка начального значения
         isNeedMoveCamera = true; // Движение камеры
         tileGenerator.GetComponent<TileGenerator>().SetStartGenerate();
+
+        GameObject pauseGame = GameObject.FindWithTag("Pause Game");
+        if (pauseGame != null)
+        {
+            GameObject pauseButton = pauseGame.transform.GetChild(1).gameObject;
+            pauseButton.SetActive(true);
+        }
     }
     public void onRetryClicked()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void onPauseClicked()
+    {
+        GameObject pauseGame = GameObject.FindWithTag("Pause Game");
+        if (pauseGame != null && !tileGenerator.GetComponent<TileGenerator>().GetGenerate())
+        {
+            tileGenerator.GetComponent<TileGenerator>().SetPauseGenerate();
+            GameObject pauseButton = pauseGame.transform.GetChild(1).gameObject;
+            pauseButton.SetActive(false);
+
+            GameObject pausePanel = pauseGame.transform.GetChild(0).gameObject;
+            pausePanel.SetActive(true);
+        }
+    }
+
+    public void onResumeClicked()
+    {
+        GameObject pauseGame = GameObject.FindWithTag("Pause Game");
+        if (pauseGame != null)
+        {
+            GameObject pauseButton = pauseGame.transform.GetChild(1).gameObject;
+            pauseButton.SetActive(true);
+
+            GameObject pausePanel = pauseGame.transform.GetChild(0).gameObject;
+            pausePanel.SetActive(false);
+            tileGenerator.GetComponent<TileGenerator>().SetStartGenerate();
+        }
+    }
+
 }

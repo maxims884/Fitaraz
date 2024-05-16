@@ -49,6 +49,11 @@ public class TileGenerator : MonoBehaviour
         countTimer++;
     }
 
+    public bool GetGenerate()
+    {
+        return isPauseGenerate;
+    }
+
     public void SetPauseGenerate() { 
         isPauseGenerate = true;
 
