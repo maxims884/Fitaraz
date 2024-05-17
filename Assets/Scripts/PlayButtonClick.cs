@@ -19,8 +19,14 @@ public class PlayButtonClick : MonoBehaviour
         
     }
 
+    private Vector2 endTouchPosition;
     // Update is called once per frame
     void Update()
+    {
+
+    }
+
+    void FixedUpdate()
     {
         if (isNeedMoveCamera)
         {
@@ -29,7 +35,6 @@ public class PlayButtonClick : MonoBehaviour
             if (camera.transform.position.y > 3.6 && camera.transform.position.y < 3.8) isNeedMoveCamera = false;
         }
     }
-
     public void onPlayClicked()
     {
         GetComponent<Image>().enabled = false; // Отключение кнопки плэй
@@ -60,6 +65,9 @@ public class PlayButtonClick : MonoBehaviour
 
             GameObject pausePanel = pauseGame.transform.GetChild(0).gameObject;
             pausePanel.SetActive(true);
+
+            GameObject pausePanel2 = pauseGame.transform.GetChild(2).gameObject;
+            pausePanel2.SetActive(true);
         }
     }
 
@@ -73,7 +81,12 @@ public class PlayButtonClick : MonoBehaviour
 
             GameObject pausePanel = pauseGame.transform.GetChild(0).gameObject;
             pausePanel.SetActive(false);
+
+            GameObject pausePanel2 = pauseGame.transform.GetChild(2).gameObject;
+            pausePanel2.SetActive(false);
+
             tileGenerator.GetComponent<TileGenerator>().SetStartGenerate();
+           
         }
     }
 

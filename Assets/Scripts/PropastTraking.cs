@@ -61,7 +61,7 @@ public class PropastTraking : MonoBehaviour
        //взрыв моста
 
         if (other.CompareTag("lava")){
-            if (countTimer > 11)
+            if (countTimer > 11 && !tileGenerator.GetComponent<TileGenerator>().GetGenerate())
             {
                 countTimer = 0;
                 int playerValue = Int32.Parse(playerText.text);
