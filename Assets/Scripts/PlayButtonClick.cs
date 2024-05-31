@@ -39,6 +39,8 @@ public class PlayButtonClick : MonoBehaviour
     {
         GetComponent<Image>().enabled = false; // Отключение кнопки плэй
         playerText.text = "0"; // Установка начального значения
+        GameObject FuelIcon = GameObject.FindWithTag("Fuel icon");
+        FuelIcon.GetComponent<Image>().enabled = true;
         isNeedMoveCamera = true; // Движение камеры
         tileGenerator.GetComponent<TileGenerator>().SetStartGenerate();
 
@@ -46,7 +48,14 @@ public class PlayButtonClick : MonoBehaviour
         if (pauseGame != null)
         {
             GameObject pauseButton = pauseGame.transform.GetChild(1).gameObject;
+            GameObject scoreText = pauseGame.transform.GetChild(3).gameObject;
+            pauseGame.transform.GetChild(4).transform.GetChild(0).GetComponent<Image>().enabled = false;
+            GameObject coinCounter = GameObject.FindWithTag("Coin counter");
+            coinCounter.GetComponent<TextMeshProUGUI>().enabled = false;
+
             pauseButton.SetActive(true);
+            scoreText.SetActive(true);
+            
         }
     }
     public void onRetryClicked()
@@ -68,6 +77,15 @@ public class PlayButtonClick : MonoBehaviour
 
             GameObject pausePanel2 = pauseGame.transform.GetChild(2).gameObject;
             pausePanel2.SetActive(true);
+
+            GameObject scoreCounter = GameObject.FindWithTag("Score Counter");
+            string[] words = scoreCounter.GetComponent<TextMeshProUGUI>().text.Split(' ');
+            pausePanel2.transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = words[1];
+
+            pausePanel2.transform.GetChild(5).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetInt("Hight Score").ToString();
+
+            GameObject currentScore = pauseGame.transform.GetChild(3).gameObject;
+            currentScore.SetActive(false);
         }
     }
 
@@ -84,6 +102,9 @@ public class PlayButtonClick : MonoBehaviour
 
             GameObject pausePanel2 = pauseGame.transform.GetChild(2).gameObject;
             pausePanel2.SetActive(false);
+
+            GameObject currentScore = pauseGame.transform.GetChild(3).gameObject;
+            currentScore.SetActive(true);
 
             tileGenerator.GetComponent<TileGenerator>().SetStartGenerate();
            

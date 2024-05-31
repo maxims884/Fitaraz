@@ -24,6 +24,9 @@ public class CanvasClicked : MonoBehaviour, IPointerClickHandler
             GameObject pausePanel2 = pauseGame.transform.GetChild(2).gameObject;
             pausePanel2.SetActive(false);
 
+            GameObject currentScore = pauseGame.transform.GetChild(3).gameObject;
+            currentScore.SetActive(true);
+
             tileGenerator.GetComponent<TileGenerator>().SetStartGenerate();
 
         }

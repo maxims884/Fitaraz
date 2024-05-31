@@ -7,6 +7,9 @@ TagManager:
   - lava
   - EndGame
   - Pause Game
+  - Fuel icon
+  - Score Counter
+  - Coin counter
   layers:
   - Default
   - TransparentFX

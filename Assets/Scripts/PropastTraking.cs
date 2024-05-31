@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using static System.Net.Mime.MediaTypeNames;
-using System.Security.Cryptography;
+using UnityEngine.UI;
 using System.Runtime.InteropServices;
-
 
 public class PropastTraking : MonoBehaviour
 {
@@ -32,26 +30,51 @@ public class PropastTraking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    void FixedUpdate()
+    {
         if (isNeedMoveCamera)
         {
-            Vector3 nextPositionCamera = Vector3.Lerp(camera.transform.position, targetCameraPosition, Time.deltaTime * cameraSpeed);
+            Vector3 nextPositionCamera = Vector3.Lerp(camera.transform.position, targetCameraPosition, 0.04f);
             camera.transform.position = nextPositionCamera;
-            if (camera.transform.position.y > 9.9 && camera.transform.position.y < 10)
+            if (camera.transform.position.y > 8.4 && camera.transform.position.y < 10)
             {
                 isNeedMoveCamera = false;
                 GameObject endGame = GameObject.FindWithTag("EndGame");
                 if (endGame != null)
                 {
+                    GameObject scoreCounter = GameObject.FindWithTag("Score Counter");
+                    string[] words = scoreCounter.GetComponent<TextMeshProUGUI>().text.Split(' ');
+                    endGame.transform.GetChild(0).transform.GetChild(3).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = words[1]; //Score
+                    scoreCounter.SetActive(false);
+
+                    GameObject coinCounter = GameObject.FindWithTag("Coin counter");
+                    coinCounter.GetComponent<TextMeshProUGUI>().enabled = true;
+                    coinCounter.transform.parent.transform.GetChild(0).GetComponent<Image>().enabled = true;
+                    int HightsScore = Int32.Parse(words[1]);
+                    int LastHightsScore = PlayerPrefs.GetInt("Hight Score");
+                    if (HightsScore > LastHightsScore)
+                    {
+                        endGame.transform.GetChild(0).transform.GetChild(5).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = HightsScore.ToString(); //Hight Score
+                        PlayerPrefs.SetInt("Hight Score", HightsScore);
+                    }
+                    else
+                    {
+                        endGame.transform.GetChild(0).transform.GetChild(5).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = LastHightsScore.ToString(); //Hight Score
+                    }
                     endGame.GetComponent<Canvas>().enabled = true;
+
+                    //-------Сколько заработал монеток-----------------
+                    int EarnedCoins = 0;
+                    EarnedCoins = HightsScore / 10;
+                    int CurrentCoins = PlayerPrefs.GetInt("Coins");
+                    PlayerPrefs.SetInt("Coins", CurrentCoins + EarnedCoins);
+                    
                 }
             }
         }
-    }
-
-    void FixedUpdate()
-    {
-
-    	
     }
 
     private float radius = 0.8f;
@@ -61,11 +84,12 @@ public class PropastTraking : MonoBehaviour
        //взрыв моста
 
         if (other.CompareTag("lava")){
-            if (countTimer > 11 && !tileGenerator.GetComponent<TileGenerator>().GetGenerate())
+            if (countTimer > 11 && !tileGenerator.GetComponent<TileGenerator>().GetGenerate()) // 11 - промежуток через который снимается балл
             {
                 countTimer = 0;
                 int playerValue = Int32.Parse(playerText.text);
 
+                
                 int res = playerValue - 1;
 
                 if (playerValue == 1)
@@ -76,7 +100,6 @@ public class PropastTraking : MonoBehaviour
                         res = 1;
                     }
                 }
-
 
                 playerText.text = res.ToString();
                 

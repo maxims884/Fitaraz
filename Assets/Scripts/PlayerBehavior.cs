@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Player : MonoBehaviour
 {
 
@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject coinCounter = GameObject.FindWithTag("Coin counter");
+        int CurrentCoins = PlayerPrefs.GetInt("Coins");
+        coinCounter.GetComponent<TextMeshProUGUI>().text = CurrentCoins.ToString();
     }
 
     // Update is called once per frame

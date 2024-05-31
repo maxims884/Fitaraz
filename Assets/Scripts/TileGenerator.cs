@@ -41,12 +41,15 @@ public class TileGenerator : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (countTimer > 350)
+        if (!isPauseGenerate)
         {
-            countTimer = 0;
-            IncreaseSpeed();
+            if (countTimer > 350)
+            {
+                countTimer = 0;
+                IncreaseSpeed();
+            }
+            countTimer++;
         }
-        countTimer++;
     }
 
     public bool GetGenerate()
