@@ -38,7 +38,7 @@ public class PlayButtonClick : MonoBehaviour
     public void onPlayClicked()
     {
         GetComponent<Image>().enabled = false; // Отключение кнопки плэй
-        playerText.text = "0"; // Установка начального значения
+        playerText.text = "20"; // Установка начального значения
         GameObject FuelIcon = GameObject.FindWithTag("Fuel icon");
         FuelIcon.GetComponent<Image>().enabled = true;
         isNeedMoveCamera = true; // Движение камеры

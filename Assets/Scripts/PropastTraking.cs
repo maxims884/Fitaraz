@@ -53,12 +53,12 @@ public class PropastTraking : MonoBehaviour
                     GameObject coinCounter = GameObject.FindWithTag("Coin counter");
                     coinCounter.GetComponent<TextMeshProUGUI>().enabled = true;
                     coinCounter.transform.parent.transform.GetChild(0).GetComponent<Image>().enabled = true;
-                    int HightsScore = Int32.Parse(words[1]);
+                    int Score = Int32.Parse(words[1]);
                     int LastHightsScore = PlayerPrefs.GetInt("Hight Score");
-                    if (HightsScore > LastHightsScore)
+                    if (Score > LastHightsScore)
                     {
-                        endGame.transform.GetChild(0).transform.GetChild(5).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = HightsScore.ToString(); //Hight Score
-                        PlayerPrefs.SetInt("Hight Score", HightsScore);
+                        endGame.transform.GetChild(0).transform.GetChild(5).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = Score.ToString(); // Score
+                        PlayerPrefs.SetInt("Hight Score", Score);
                     }
                     else
                     {
@@ -67,13 +67,23 @@ public class PropastTraking : MonoBehaviour
                     endGame.GetComponent<Canvas>().enabled = true;
 
                     //-------Сколько заработал монеток-----------------
+                    
                     int EarnedCoins = 0;
-                    EarnedCoins = HightsScore / 10;
+                    EarnedCoins = Score * 5 ;
                     int CurrentCoins = PlayerPrefs.GetInt("Coins");
                     PlayerPrefs.SetInt("Coins", CurrentCoins + EarnedCoins);
-                    
+                    //int resCoins = CurrentCoins + EarnedCoins;
+                    //coinCounter.GetComponent<TextMeshProUGUI>().text = resCoins.ToString();
+                    if(EarnedCoins > 0) endGame.transform.GetChild(0).transform.GetChild(6).gameObject.SetActive(true);
+                    //endGame.transform.GetChild(0).transform.GetChild(6).GetComponent<RewardAnimator>().RewardPileOfCoin();
                 }
             }
+        }
+
+        if(!tileGenerator.GetComponent<TileGenerator>().GetGenerate() && player.transform.position.y < -12 && player.transform.position.y > -20 && !isNeedMoveCamera) // если ниже дороги
+        {
+            tileGenerator.GetComponent<TileGenerator>().SetPauseGenerate();
+            isNeedMoveCamera = true;
         }
     }
 
@@ -84,7 +94,7 @@ public class PropastTraking : MonoBehaviour
        //взрыв моста
 
         if (other.CompareTag("lava")){
-            if (countTimer > 11 && !tileGenerator.GetComponent<TileGenerator>().GetGenerate()) // 11 - промежуток через который снимается балл
+            if (countTimer > 7 && !tileGenerator.GetComponent<TileGenerator>().GetGenerate()) // 11 - промежуток через который снимается балл
             {
                 countTimer = 0;
                 int playerValue = Int32.Parse(playerText.text);

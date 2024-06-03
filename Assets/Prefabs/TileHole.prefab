@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 917780528624980529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.3271, y: 0, z: -4620}
-  m_LocalScale: {x: 5, y: 0.2, z: 16}
+  m_LocalScale: {x: 5, y: 0.2, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5756236218963373369}
@@ -120,8 +120,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.5000001, y: -0.50000006, z: -0.4972347}
 --- !u!1 &3634610111837698996
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +134,8 @@ GameObject:
   - component: {fileID: 6133540305001056805}
   - component: {fileID: 5335642322706013041}
   - component: {fileID: 6357373688671981770}
-  - component: {fileID: 6228382417024962033}
+  - component: {fileID: 6456218598325291413}
+  - component: {fileID: 5877810219499664351}
   m_Layer: 0
   m_Name: BridgeLeft
   m_TagString: Untagged
@@ -221,33 +222,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
---- !u!54 &6228382417024962033
-Rigidbody:
+--- !u!65 &6456218598325291413
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3634610111837698996}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5877810219499664351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3634610111837698996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81a2df20ab00c74ebad2a1f0dac3442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other1: {fileID: 7430090598548535645}
+  other2: {fileID: 7815279035165724473}
 --- !u!1 &4479923716356996953
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,8 +362,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.019999992, y: 0.019999996, z: 0.0315298}
-  m_Center: {x: 0.0000000021183297, y: -5.5784565e-12, z: 0.0057649193}
+  m_Size: {x: 0.019999992, y: 0.019999996, z: 0.019841978}
+  m_Center: {x: 0.0000000021183297, y: 9.6160107e-14, z: -0.000078973084}
 --- !u!54 &7974690023458595039
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -590,7 +599,8 @@ GameObject:
   - component: {fileID: 742324801647377148}
   - component: {fileID: 5826377052584192322}
   - component: {fileID: 6635894893064377158}
-  - component: {fileID: 4721370793065518327}
+  - component: {fileID: 8012422877112994265}
+  - component: {fileID: 2776006120261211364}
   m_Layer: 0
   m_Name: BridgeRight
   m_TagString: Untagged
@@ -677,33 +687,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
---- !u!54 &4721370793065518327
-Rigidbody:
+--- !u!65 &8012422877112994265
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7430090598548535645}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.000000052154064, y: 0, z: 0}
+--- !u!114 &2776006120261211364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7430090598548535645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81a2df20ab00c74ebad2a1f0dac3442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other1: {fileID: 3634610111837698996}
+  other2: {fileID: 7815279035165724473}
 --- !u!1 &7726644244589349217
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +766,8 @@ GameObject:
   - component: {fileID: 2867633866168567689}
   - component: {fileID: 8937633392139117714}
   - component: {fileID: 2533538536645555363}
-  - component: {fileID: 4583153041100502005}
+  - component: {fileID: 3470062509288512608}
+  - component: {fileID: 5531950885114092415}
   m_Layer: 0
   m_Name: BridgeCenter
   m_TagString: Untagged
@@ -835,33 +854,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
---- !u!54 &4583153041100502005
-Rigidbody:
+--- !u!65 &3470062509288512608
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7815279035165724473}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.92379117, y: 1, z: 1}
+  m_Center: {x: 0.017958656, y: 0, z: 0}
+--- !u!114 &5531950885114092415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7815279035165724473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81a2df20ab00c74ebad2a1f0dac3442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other1: {fileID: 3634610111837698996}
+  other2: {fileID: 7430090598548535645}
 --- !u!1 &8172829405884124127
 GameObject:
   m_ObjectHideFlags: 0

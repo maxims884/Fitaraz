@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
+using TMPro;
 public class TileGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject _tilePrefab;
@@ -11,9 +12,10 @@ public class TileGenerator : MonoBehaviour
     [SerializeField] private GameObject _tilePrefabHole;
     [SerializeField] private int maxCount;
     [SerializeField] private List<Tile> _tiles = new List<Tile>();
-    private float speed = 8;
+    [SerializeField] private TextMeshProUGUI playerText;
+    private float speed = 18;
     private float maxSpeed = 40;
-    private float increaseSpeedStep = 0.2f;
+    private float increaseSpeedStep = 1f;
     private float countTimer = 0;
 
     public bool isPauseGenerate = false;
@@ -43,12 +45,17 @@ public class TileGenerator : MonoBehaviour
     {
         if (!isPauseGenerate)
         {
-            if (countTimer > 350)
+            if (countTimer > 300)
             {
                 countTimer = 0;
                 IncreaseSpeed();
+                
             }
-            countTimer++;
+            if (countTimer % 70 == 0)
+            {
+                DecreaseFuel();
+            }
+                countTimer++;
         }
     }
 
@@ -84,9 +91,10 @@ public class TileGenerator : MonoBehaviour
         if(IsNeedAddHole == 5 && !String.Equals(_tiles.Last().name, "TileHole(Clone)") && !String.Equals(_tiles.Last().name,"TileHole"))
         {
             _prefab = _tilePrefabHole;
-            _prefab.transform.localScale = new Vector3(_prefab.transform.localScale.x, _prefab.transform.localScale.y, getRand(5,20));
-             
-        } else {
+            _prefab.transform.localScale = new Vector3(_prefab.transform.localScale.x, _prefab.transform.localScale.y, getRand(10,20));
+
+        }
+        else {
             if (IsNeedBonusTile == 3)
             {
                 _prefab = _tilePrefabWithBonus;
@@ -126,6 +134,12 @@ public class TileGenerator : MonoBehaviour
                 tile.speed = speed;
             }
         }
+    }
+
+    private void DecreaseFuel()
+    {
+        int playerValue = Int32.Parse(playerText.text) - 1;
+        playerText.text = playerValue.ToString();
     }
 
     private int getRand(int minValue, int maxValue)
