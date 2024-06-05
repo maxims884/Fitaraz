@@ -25,6 +25,7 @@ public class TileGenerator : MonoBehaviour
     {
         _tiles.First().speed = speed;
         _tiles[1].speed = speed;
+        _tiles[2].speed = speed;
         for (int i = 0; i < maxCount; i++)
         {
             GenerateTile();

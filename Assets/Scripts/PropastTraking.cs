@@ -144,5 +144,11 @@ public class PropastTraking : MonoBehaviour
             tileGenerator.GetComponent<TileGenerator>().SetPauseGenerate();
             isNeedMoveCamera = true;
         }
+
+        if (other.CompareTag("barrikada") && !tileGenerator.GetComponent<TileGenerator>().GetGenerate())
+        {
+            tileGenerator.GetComponent<TileGenerator>().SetPauseGenerate();
+            isNeedMoveCamera = true;
+        }
     }
 }

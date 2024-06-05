@@ -12,7 +12,7 @@ public class RoadConeSetupper : MonoBehaviour
     void Start()
     {
         Generator = GameObject.Find("TileGenerator").GetComponent<TileGenerator>() ;
-        if (Generator.GetCurrentSpeed() > 19 && getRand(0, 3) == 1 && !other1.GetComponent<MeshRenderer>().enabled && !other2.GetComponent<MeshRenderer>().enabled) // Показывать ли Конус вообще
+        if (Generator.GetCurrentSpeed() > 19 && getRand(0, 2) == 1 && !other1.GetComponent<MeshRenderer>().enabled && !other2.GetComponent<MeshRenderer>().enabled) // Показывать ли Конус вообще
         {
             gameObject.GetComponent<MeshRenderer>().enabled = true;
             gameObject.GetComponent<BoxCollider>().enabled = true;
