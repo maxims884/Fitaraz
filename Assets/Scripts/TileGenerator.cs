@@ -59,6 +59,11 @@ public class TileGenerator : MonoBehaviour
         }
     }
 
+    public float GetCurrentSpeed()
+    {
+        return speed;
+    }
+
     public bool GetGenerate()
     {
         return isPauseGenerate;
@@ -88,10 +93,10 @@ public class TileGenerator : MonoBehaviour
         int IsNeedBonusTile = getRand(1, 5);
         int IsNeedAddHole = getRand(3, 7);
         GameObject _prefab;
-        if(IsNeedAddHole == 5 && !String.Equals(_tiles.Last().name, "TileHole(Clone)") && !String.Equals(_tiles.Last().name,"TileHole"))
+        if(IsNeedAddHole == 5 && !String.Equals(_tiles.Last().name, "TileHoleNew(Clone)") && !String.Equals(_tiles.Last().name,"TileHoleNew"))
         {
             _prefab = _tilePrefabHole;
-            _prefab.transform.localScale = new Vector3(_prefab.transform.localScale.x, _prefab.transform.localScale.y, getRand(10,20));
+            _prefab.transform.GetChild(0).transform.localScale = new Vector3(_prefab.transform.GetChild(0).transform.localScale.x, _prefab.transform.GetChild(0).transform.localScale.y, getRand(10,20));
 
         }
         else {
@@ -104,12 +109,12 @@ public class TileGenerator : MonoBehaviour
             }
         }
 
-        float lastCenter = _tiles.Last().transform.localScale.z /2;
-        float prefCenter = _prefab.transform.localScale.z /2;
+        float lastCenter = _tiles.Last().transform.GetChild(0).transform.localScale.z /2;
+        float prefCenter = _prefab.transform.GetChild(0).transform.localScale.z /2;
         float sdvigZ =  lastCenter +  prefCenter;
 
         GameObject newTileObject;
-        newTileObject = Instantiate(_prefab, _tiles.Last().transform.position + Vector3.forward *sdvigZ, Quaternion.identity);
+        newTileObject = Instantiate(_prefab, _tiles.Last().transform.GetChild(0).transform.position + Vector3.forward *sdvigZ, Quaternion.identity);
 
         Tile newTile = newTileObject.GetComponent<Tile>();
         newTile.speed = speed;

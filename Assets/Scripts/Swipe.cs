@@ -9,7 +9,7 @@ public class Swipe : MonoBehaviour
     public GameObject Player;
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
-    private float moveDuration = 0.08f;
+    private float moveDuration = 0.10f;
     private bool isDetectSwipe = true;
     // Start is called before the first frame update
     void Start()

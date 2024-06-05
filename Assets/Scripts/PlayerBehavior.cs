@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 public class Player : MonoBehaviour
 {
 
-    [SerializeField] private GameObject player;
 
     //private float countTimer = 0;
 
@@ -30,5 +30,22 @@ public class Player : MonoBehaviour
         //{
             //player.getcomponent<rigidbody>().usegravity = true;
         //}
+    }
+
+    private void OnCollisionEnter(Collision coll)
+    {
+        ObjectForce force = coll.gameObject.GetComponent<ObjectForce>();
+        if (force)
+        {
+            GameObject scoreCounter = GameObject.FindWithTag("Score Counter");
+            string[] words = scoreCounter.GetComponent<TextMeshProUGUI>().text.Split(' ');
+            int minusValue = 1;
+            int curretScore = Int32.Parse(words[1]);
+            if (curretScore > 50) minusValue = 5;
+            curretScore -= minusValue;
+            if (curretScore < 0 ) curretScore = 0;
+            scoreCounter.GetComponent<TextMeshProUGUI>().text = "Score: " + curretScore;
+            force.OnHit();
+        }
     }
 }

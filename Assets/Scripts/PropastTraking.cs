@@ -5,7 +5,6 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
-
 public class PropastTraking : MonoBehaviour
 {
     [SerializeField] private GameObject player;
@@ -91,15 +90,16 @@ public class PropastTraking : MonoBehaviour
     private float forceValue = 15f;
     void OnTriggerStay(Collider other)
     {
-       //взрыв моста
+        //взрыв моста
 
-        if (other.CompareTag("lava")){
+        if (other.CompareTag("lava")  && !tileGenerator.GetComponent<TileGenerator>().GetGenerate())
+        {
             if (countTimer > 7 && !tileGenerator.GetComponent<TileGenerator>().GetGenerate()) // 11 - промежуток через который снимается балл
             {
                 countTimer = 0;
                 int playerValue = Int32.Parse(playerText.text);
 
-                
+
                 int res = playerValue - 1;
 
                 if (playerValue == 1)
@@ -112,8 +112,8 @@ public class PropastTraking : MonoBehaviour
                 }
 
                 playerText.text = res.ToString();
-                
-                if(res <= 0)
+
+                if (res <= 0)
                 {
                     tileGenerator.GetComponent<TileGenerator>().SetPauseGenerate();
                     other.gameObject.GetComponent<Collider>().enabled = false;
@@ -122,8 +122,7 @@ public class PropastTraking : MonoBehaviour
 
                     Destrictible script = other.GetComponent<Destrictible>();
                     GameObject prefabPart = script.DestroyObj();
-
-                    other.gameObject.transform.parent.transform.parent.transform.parent.GetComponent<BoxCollider>().enabled = false;
+                    other.gameObject.transform.parent.transform.parent.GetComponent<BoxCollider>().enabled = false;
                     for (int i = 0; i < prefabPart.transform.childCount; i++)
                     {
                         GameObject child = prefabPart.transform.GetChild(i).gameObject;
@@ -132,13 +131,18 @@ public class PropastTraking : MonoBehaviour
                         if (rb != null)
                         {
                             Vector3 velocityT = new Vector3(0, 1, 0);
-                            rb.AddForce(rand.Next(-10,10), rand.Next(0, 20), rand.Next(-10, 10), ForceMode.Impulse);
+
+                            rb.AddForce(rand.Next(-10, 10), rand.Next(0, 20), rand.Next(-10, 10), ForceMode.Impulse);
                         }
                     }
                 }
             }
             countTimer++;
         }
+        if (other.CompareTag("tree") && !tileGenerator.GetComponent<TileGenerator>().GetGenerate())
+        {
+            tileGenerator.GetComponent<TileGenerator>().SetPauseGenerate();
+            isNeedMoveCamera = true;
+        }
     }
-
 }

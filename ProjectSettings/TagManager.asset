@@ -10,6 +10,8 @@ TagManager:
   - Fuel icon
   - Score Counter
   - Coin counter
+  - Undefined
+  - tree
   layers:
   - Default
   - TransparentFX

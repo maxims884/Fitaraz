@@ -45,7 +45,7 @@ public class RewardAnimator : MonoBehaviour
         Reset();
 
 
-        var delay = 0.5f;
+        var delay = 1f;
 
         //pileOfCoins.SetActive(true);
 
