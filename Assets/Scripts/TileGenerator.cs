@@ -12,7 +12,7 @@ public class TileGenerator : MonoBehaviour
     [SerializeField] private GameObject _tilePrefabHole;
     [SerializeField] private int maxCount;
     [SerializeField] private List<Tile> _tiles = new List<Tile>();
-    [SerializeField] private TextMeshProUGUI playerText;
+    [SerializeField] private GameObject player;
     private float speed = 18;
     private float maxSpeed = 40;
     private float increaseSpeedStep = 1f;
@@ -51,10 +51,6 @@ public class TileGenerator : MonoBehaviour
                 countTimer = 0;
                 IncreaseSpeed();
                 
-            }
-            if (countTimer % 70 == 0)
-            {
-                DecreaseFuel();
             }
                 countTimer++;
         }
@@ -140,12 +136,6 @@ public class TileGenerator : MonoBehaviour
                 tile.speed = speed;
             }
         }
-    }
-
-    private void DecreaseFuel()
-    {
-        int playerValue = Int32.Parse(playerText.text) - 1;
-        playerText.text = playerValue.ToString();
     }
 
     private int getRand(int minValue, int maxValue)

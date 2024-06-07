@@ -11,7 +11,7 @@ public class PlayButtonClick : MonoBehaviour
     private Vector3 targetCameraPosition = new Vector3(0, 3.7f, -3.3f);
     private bool isNeedMoveCamera = false;
     [SerializeField] private GameObject camera;
-    [SerializeField] private TextMeshProUGUI playerText;
+    [SerializeField] private GameObject player;
     [SerializeField] private GameObject tileGenerator;
     // Start is called before the first frame update
     void Start()
@@ -35,10 +35,11 @@ public class PlayButtonClick : MonoBehaviour
             if (camera.transform.position.y > 3.6 && camera.transform.position.y < 3.8) isNeedMoveCamera = false;
         }
     }
+
     public void onPlayClicked()
     {
         GetComponent<Image>().enabled = false; // Отключение кнопки плэй
-        playerText.text = "20"; // Установка начального значения
+        player.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "20"; // Установка начального значения
         GameObject FuelIcon = GameObject.FindWithTag("Fuel icon");
         FuelIcon.GetComponent<Image>().enabled = true;
         isNeedMoveCamera = true; // Движение камеры
@@ -54,9 +55,17 @@ public class PlayButtonClick : MonoBehaviour
             coinCounter.GetComponent<TextMeshProUGUI>().enabled = false;
 
             pauseButton.SetActive(true);
-            scoreText.SetActive(true);
-            
+            scoreText.SetActive(true); 
         }
+
+        int CurrentSelectedCarIndex = PlayerPrefs.GetInt("Сurrent selected car");
+
+        for (int i = 0; i < player.transform.parent.transform.childCount; i++)
+        {
+            GameObject obj = player.transform.parent.transform.GetChild(i).gameObject;
+            if(i != CurrentSelectedCarIndex) obj.SetActive(false);
+        }
+
     }
     public void onRetryClicked()
     {
