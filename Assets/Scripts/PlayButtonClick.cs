@@ -40,7 +40,7 @@ public class PlayButtonClick : MonoBehaviour
     {
         GetComponent<Image>().enabled = false; // Отключение кнопки плэй
         player.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "20"; // Установка начального значения
-        GameObject FuelIcon = GameObject.FindWithTag("Fuel icon");
+        GameObject FuelIcon = transform.parent.transform.GetChild(2).gameObject;
         FuelIcon.GetComponent<Image>().enabled = true;
         isNeedMoveCamera = true; // Движение камеры
         tileGenerator.GetComponent<TileGenerator>().SetStartGenerate();
